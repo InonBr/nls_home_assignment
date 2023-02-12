@@ -1,5 +1,6 @@
 import { messageBodySchema } from "@systems/schemas";
 import { Request, Response, Router } from "express";
+import { createNewNote } from "repositories/notes";
 import { ValidationError } from "yup";
 
 const notesRouter = Router();
@@ -11,7 +12,11 @@ notesRouter.post("/", async (req: Request, res: Response) => {
       stripUnknown: true,
     });
 
-    res.send(msgBody);
+    const { note } = msgBody;
+
+    const { newNoteData, id } = await createNewNote(note);
+
+    res.send({ newNoteData, id });
   } catch (err) {
     console.error(err);
 
