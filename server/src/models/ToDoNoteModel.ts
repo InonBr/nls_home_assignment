@@ -16,4 +16,4 @@ const ToDoNoteModel = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("ToDoNoteModel", ToDoNoteModel);
+export default mongoose.model("ToDoNoteModel", ToDoNoteModel, "to_do_notes");

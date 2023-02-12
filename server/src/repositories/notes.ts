@@ -9,7 +9,7 @@ export const createNewNote = async (note: string) => {
 
   await newNoteData.save();
 
-  const { _id } = newNoteData;
+  const { _id, date, doneTask } = newNoteData;
 
-  return { id: _id.toString(), newNoteData };
+  return { id: _id.toString(), date, doneTask };
 };

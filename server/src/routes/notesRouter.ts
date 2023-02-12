@@ -14,9 +14,9 @@ notesRouter.post("/", async (req: Request, res: Response) => {
 
     const { note } = msgBody;
 
-    const { newNoteData, id } = await createNewNote(note);
+    const { date, id, doneTask } = await createNewNote(note);
 
-    res.send({ newNoteData, id });
+    res.send({ id, note, date, doneTask });
   } catch (err) {
     console.error(err);
 
