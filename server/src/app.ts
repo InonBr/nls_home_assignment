@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "@systems/dBConnection";
+import notesRouter from "@routes/notesRouter";
 
 const startServer = async () => {
   dotenv.config();
@@ -11,6 +12,8 @@ const startServer = async () => {
 
   app.use(cors());
   app.use(express.json());
+
+  app.use("/api", notesRouter);
 
   await connectDB;
 
