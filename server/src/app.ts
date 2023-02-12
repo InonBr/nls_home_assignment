@@ -12,10 +12,6 @@ const startServer = async () => {
   app.use(cors());
   app.use(express.json());
 
-  app.get("/", (req: Request, res: Response) => {
-    res.send("Hello World");
-  });
-
   await connectDB;
 
   console.log("🔵 MongoDB connected...");

@@ -11,7 +11,8 @@
     "types": ["node"],
     "baseUrl": "./src",
     "paths": {
-      "@systems/*": ["systems/*"]
+      "@systems/*": ["systems/*"],
+      "@models/*": ["models/*"]
     }
   },
   "include": ["./src", "src/**/*", "./src/**/*.ts"],
