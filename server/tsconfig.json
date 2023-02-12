@@ -3,18 +3,17 @@
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
-    "rootDir": "./",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
     "types": ["node"],
     "baseUrl": "./src",
-    "skipLibCheck": true
-    // "paths": {},
+    "paths": {
+      "@systems/*": ["systems/*"]
+    }
   },
-  "include": ["./src", "./src/*.ts"],
+  "include": ["./src", "src/**/*", "./src/**/*.ts"],
   "exclude": ["node_modules", ".vscode"]
 }
