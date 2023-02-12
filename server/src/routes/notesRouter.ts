@@ -1,6 +1,6 @@
-import { messageBodySchema } from "@systems/schemas";
+import { GetAllNotesInterface, messageBodySchema } from "@systems/schemas";
 import { Request, Response, Router } from "express";
-import { createNewNote } from "repositories/notes";
+import { createNewNote, getAllNotes } from "repositories/notes";
 import { ValidationError } from "yup";
 
 const notesRouter = Router();
@@ -26,6 +26,29 @@ notesRouter.post("/", async (req: Request, res: Response) => {
 
     const error = err as Error;
     return res.status(500).json({ msg: error.message });
+  }
+});
+
+notesRouter.get("/", async (req: Request, res: Response) => {
+  try {
+    const notes = await getAllNotes();
+
+    const notesObj = notes.reduce((obj: GetAllNotesInterface, noteData) => {
+      const key = noteData.doneTask ? "doneTasks" : "tasksToComplete";
+
+      if (!obj[key]) {
+        obj[key] = [];
+      }
+
+      obj[key]?.push({ date: noteData.date, note: noteData.note });
+
+      return obj;
+    }, {});
+
+    res.send(notesObj);
+  } catch (err: any) {
+    console.error(err);
+    res.status(500).send({ msg: err.message });
   }
 });
 

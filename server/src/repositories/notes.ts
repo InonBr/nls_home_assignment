@@ -13,3 +13,5 @@ export const createNewNote = async (note: string) => {
 
   return { id: _id.toString(), date, doneTask };
 };
+
+export const getAllNotes = async () => ToDoNoteModel.find().sort({ date: -1 });

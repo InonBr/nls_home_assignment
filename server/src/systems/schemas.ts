@@ -6,3 +6,12 @@ export const messageBodySchema = object({
     .trim()
     .max(250, "note must not exceed 250 characters"),
 }).required();
+
+interface Task {
+  note: string;
+  date: Date;
+}
+export interface GetAllNotesInterface {
+  doneTasks?: Task[];
+  tasksToComplete?: Task[];
+}
