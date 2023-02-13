@@ -2,11 +2,11 @@ import { Button, ListGroup } from "react-bootstrap";
 import { Task } from "../../lib/apiInterfaces";
 import { ImBin } from "react-icons/im";
 import { MdDoneOutline, MdRemoveDone } from "react-icons/md";
-import "../styles/noteList.css";
 import { deleteNote } from "../../lib/api";
-import { TaskActions } from "../../ustils";
+import { TaskActions } from "../../utils";
 import { useDispatch } from "react-redux";
 import { deleteFromList } from "../../redux/slices/notesObjSlice";
+import "../styles/noteList.css";
 
 type Props = {
   taskList: ReadonlyArray<Task>;

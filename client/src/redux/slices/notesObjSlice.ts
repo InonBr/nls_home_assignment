@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { GetAllNotesInterface, Task } from "../../lib/apiInterfaces";
-import { TaskActions } from "../../ustils";
+import { TaskActions } from "../../utils";
 
 const initialState: { value: GetAllNotesInterface } = {
   value: { doneTasks: [], tasksToComplete: [] },
