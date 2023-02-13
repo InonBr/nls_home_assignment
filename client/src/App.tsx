@@ -24,16 +24,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <Col xs={12} md={6}>
+      <Col xs={12} md={4}>
         <NewNoteForm />
       </Col>
 
       <Row>
-        <Col xs={12} md={6}>
-          <NotesList taskList={notesObj.tasksToComplete} />
+        <Col xs={12} md={3}>
+          <NotesList taskList={notesObj.tasksToComplete} done={false} />
         </Col>
-        <Col xs={12} md={6}>
-          <NotesList taskList={notesObj.doneTasks} />
+        <Col xs={12} md={3}>
+          <NotesList taskList={notesObj.doneTasks} done={true} />
         </Col>
       </Row>
     </div>

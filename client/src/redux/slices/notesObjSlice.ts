@@ -16,10 +16,7 @@ export const notesObjSlice = createSlice({
     pushToArr: (state, action: PayloadAction<Task>) => {
       const key = action.payload.doneTask ? "doneTasks" : "tasksToComplete";
 
-      state.value[key] = {
-        ...state.value[key],
-        ...[action.payload, ...state.value[key]],
-      };
+      state.value[key] = [...[action.payload, ...state.value[key]]];
 
       return state;
     },

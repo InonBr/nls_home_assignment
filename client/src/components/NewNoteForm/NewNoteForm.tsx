@@ -23,7 +23,7 @@ const NewNoteForm = () => {
   };
 
   return (
-    <Form className="m-2" onSubmit={handleSubmit(onSubmit)}>
+    <Form className="m-3" onSubmit={handleSubmit(onSubmit)}>
       <Form.Group>
         <Form.Label htmlFor="newNote">Create New Note</Form.Label>
         <Form.Control
