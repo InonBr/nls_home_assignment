@@ -12,7 +12,8 @@ export const notesObjSlice = createSlice({
   initialState,
   reducers: {
     setNotes: (state, action: PayloadAction<GetAllNotesInterface>) => {
-      state.value = action.payload;
+      state.value["tasksToComplete"] = action.payload["tasksToComplete"] ?? [];
+      state.value["doneTasks"] = action.payload["doneTasks"] ?? [];
     },
     pushToArr: (state, action: PayloadAction<Task>) => {
       const key = action.payload.doneTask ? "doneTasks" : "tasksToComplete";
