@@ -24,6 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1 className="m-3">To Do List</h1>
       <Col sm={12} md={4}>
         <NewNoteForm />
       </Col>
