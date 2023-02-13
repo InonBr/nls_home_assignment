@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { GetAllNotesInterface, Task } from "../../lib/apiInterfaces";
-import { TaskActions } from "../../utils";
+import { TaskActions, TaskUpdateInterface } from "../../utils";
 
 const initialState: { value: GetAllNotesInterface } = {
   value: { doneTasks: [], tasksToComplete: [] },
@@ -28,8 +28,17 @@ export const notesObjSlice = createSlice({
 
       state.value[key] = state.value[key].filter((item) => item.id !== taskId);
     },
+    changeDoneStatus: (state, action: PayloadAction<TaskUpdateInterface>) => {
+      const { updateFrom, updateTo } = action.payload;
+      const keyToAddTo = updateTo ? "doneTasks" : "tasksToComplete";
+      const keyToRemoveFrom = updateFrom ? "doneTasks" : "tasksToComplete";
+
+      console.log("keyToAddTo", keyToAddTo);
+      console.log("keyToRemoveFrom", keyToRemoveFrom);
+    },
   },
 });
 
-export const { setNotes, pushToArr, deleteFromList } = notesObjSlice.actions;
+export const { setNotes, pushToArr, deleteFromList, changeDoneStatus } =
+  notesObjSlice.actions;
 export default notesObjSlice.reducer;

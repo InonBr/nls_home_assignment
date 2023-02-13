@@ -2,10 +2,13 @@ import { Button, ListGroup } from "react-bootstrap";
 import { Task } from "../../lib/apiInterfaces";
 import { ImBin } from "react-icons/im";
 import { MdDoneOutline, MdRemoveDone } from "react-icons/md";
-import { deleteNote } from "../../lib/api";
+import { deleteNote, updateNoteStatus } from "../../lib/api";
 import { TaskActions } from "../../utils";
 import { useDispatch } from "react-redux";
-import { deleteFromList } from "../../redux/slices/notesObjSlice";
+import {
+  changeDoneStatus,
+  deleteFromList,
+} from "../../redux/slices/notesObjSlice";
 import "../styles/noteList.css";
 
 type Props = {
@@ -24,6 +27,21 @@ const NotesList = ({ taskList, done }: Props) => {
     if (buttonName === "delete") {
       const deletedNoteId = await deleteNote(taskId);
       dispatch(deleteFromList({ taskId: deletedNoteId, buttonName, done }));
+    }
+
+    if (buttonName === "changeStatus") {
+      const updatedNote = await updateNoteStatus(taskId);
+      const { date, doneTask, id, note } = updatedNote;
+
+      dispatch(
+        changeDoneStatus({
+          date,
+          id,
+          note,
+          updateTo: doneTask,
+          updateFrom: !doneTask,
+        })
+      );
     }
   };
 
@@ -44,7 +62,7 @@ const NotesList = ({ taskList, done }: Props) => {
                   onClick={() =>
                     clickEventsHandler({
                       taskId: task.id,
-                      buttonName: "unDone",
+                      buttonName: "changeStatus",
                       done: task.doneTask,
                     })
                   }
@@ -60,7 +78,7 @@ const NotesList = ({ taskList, done }: Props) => {
                   onClick={() =>
                     clickEventsHandler({
                       taskId: task.id,
-                      buttonName: "markDone",
+                      buttonName: "changeStatus",
                       done: task.doneTask,
                     })
                   }
