@@ -13,3 +13,8 @@ export const createNewNote = async (noteText: string): Promise<Task> =>
       note: noteText,
     })
   ).data;
+
+export const deleteNote = async (noteId: string): Promise<string> =>
+  await (
+    await axios.delete(`${baseUrl}${noteId}`)
+  ).data;
