@@ -1,7 +1,12 @@
+import { Col } from "react-bootstrap";
+import NewNoteForm from "./components/NewNoteForm/NewNoteForm";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <Col xs={12} md={6}>
+        <NewNoteForm />
+      </Col>
     </div>
   );
 }
