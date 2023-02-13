@@ -5,8 +5,6 @@ export const createNewNote = async (note: string) => {
     note,
   });
 
-  console.log(newNoteData);
-
   await newNoteData.save();
 
   const { _id, date, doneTask } = newNoteData;

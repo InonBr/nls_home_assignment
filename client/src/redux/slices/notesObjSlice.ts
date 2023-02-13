@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { GetAllNotesInterface, Task } from "../../lib/apiInterfaces";
 
-const initialState: { notes: GetAllNotesInterface } = {
-  notes: { doneTasks: [], tasksToComplete: [] },
+const initialState: { value: GetAllNotesInterface } = {
+  value: { doneTasks: [], tasksToComplete: [] },
 };
 
 export const notesObjSlice = createSlice({
@@ -11,14 +11,14 @@ export const notesObjSlice = createSlice({
   initialState,
   reducers: {
     setNotes: (state, action: PayloadAction<GetAllNotesInterface>) => {
-      state.notes = action.payload;
+      state.value = action.payload;
     },
     pushToArr: (state, action: PayloadAction<Task>) => {
       const key = action.payload.doneTask ? "doneTasks" : "tasksToComplete";
 
-      state.notes[key] = {
-        ...state.notes[key],
-        ...[action.payload, ...state.notes[key]],
+      state.value[key] = {
+        ...state.value[key],
+        ...[action.payload, ...state.value[key]],
       };
 
       return state;

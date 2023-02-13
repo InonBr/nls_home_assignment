@@ -1,26 +1,11 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { GetAllNotesInterface } from "../../lib/apiInterfaces";
-import { useEffect } from "react";
-import { setNotes } from "../../redux/slices/notesObjSlice";
-import { getAllNotes } from "../../lib/api";
+import { Task } from "../../lib/apiInterfaces";
 
-const NotesList = () => {
-  const dispatch = useDispatch();
-  const notes = useSelector(
-    (state: { notes: GetAllNotesInterface }) => state.notes
-  );
+type Props = {
+  taskList: ReadonlyArray<Task>;
+};
 
-  useEffect(() => {
-    const getNots = async () => {
-      const notesObj = await getAllNotes();
-      dispatch(setNotes(notesObj));
-    };
-
-    getNots();
-  }, [dispatch]);
-
-  console.log(notes);
+const NotesList = ({ taskList }: Props) => {
+  console.log(taskList);
   return <h1>hello world</h1>;
 };
 
