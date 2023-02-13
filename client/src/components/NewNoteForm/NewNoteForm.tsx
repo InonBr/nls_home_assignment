@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FieldValues, useForm } from "react-hook-form";
-import "../styles/form.css";
 import { createNewNote } from "../../lib/api";
 import { useDispatch } from "react-redux";
 import { pushToArr } from "../../redux/slices/notesObjSlice";
+import "../styles/form.css";
 
 const NewNoteForm = () => {
   const dispatch = useDispatch();
@@ -42,13 +42,13 @@ const NewNoteForm = () => {
         <Form.Group>
           {errors.newNote && errors.newNote.type === "required" && (
             <Form.Label className="red-text" role="alert">
-              Message is required
+              Text is required
             </Form.Label>
           )}
 
           {errors.newNote && errors.newNote.type === "maxLength" && (
             <Form.Label className="red-text" role="alert">
-              Message is too long
+              Text is too long
             </Form.Label>
           )}
         </Form.Group>
