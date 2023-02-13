@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { GetAllNotesInterface } from "../../lib/apiInterfaces";
+import { GetAllNotesInterface, Task } from "../../lib/apiInterfaces";
 
-const initialState: { notes: GetAllNotesInterface } = { notes: {} };
+const initialState: { notes: GetAllNotesInterface } = {
+  notes: { doneTasks: [], tasksToComplete: [] },
+};
 
 export const notesObjSlice = createSlice({
   name: "notesObj",
@@ -11,9 +13,18 @@ export const notesObjSlice = createSlice({
     setNotes: (state, action: PayloadAction<GetAllNotesInterface>) => {
       state.notes = action.payload;
     },
-    //   pushToArr: (state, action: PayloadAction<GetAllNotesInterface>) => {},
+    pushToArr: (state, action: PayloadAction<Task>) => {
+      const key = action.payload.doneTask ? "doneTasks" : "tasksToComplete";
+
+      state.notes[key] = {
+        ...state.notes[key],
+        ...[action.payload, ...state.notes[key]],
+      };
+
+      return state;
+    },
   },
 });
 
-export const { setNotes } = notesObjSlice.actions;
+export const { setNotes, pushToArr } = notesObjSlice.actions;
 export default notesObjSlice.reducer;

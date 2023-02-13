@@ -5,6 +5,6 @@ export interface Task {
   doneTask: boolean;
 }
 export interface GetAllNotesInterface {
-  doneTasks?: Task[];
-  tasksToComplete?: Task[];
+  doneTasks: Task[];
+  tasksToComplete: Task[];
 }

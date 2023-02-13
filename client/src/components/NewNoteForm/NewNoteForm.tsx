@@ -3,8 +3,11 @@ import { Button, Form } from "react-bootstrap";
 import { FieldValues, useForm } from "react-hook-form";
 import "../styles/form.css";
 import { createNewNote } from "../../lib/api";
+import { useDispatch } from "react-redux";
+import { pushToArr } from "../../redux/slices/notesObjSlice";
 
 const NewNoteForm = () => {
+  const dispatch = useDispatch();
   const [noteLength, setNoteLength] = useState(0);
 
   const {
@@ -14,11 +17,9 @@ const NewNoteForm = () => {
   } = useForm();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
     const { newNote } = data;
     const newNoteData = await createNewNote(newNote);
-
-    console.log(newNoteData);
+    dispatch(pushToArr(newNoteData));
   };
 
   return (
