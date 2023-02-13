@@ -11,6 +11,7 @@ export const notesObjSlice = createSlice({
     setNotes: (state, action: PayloadAction<GetAllNotesInterface>) => {
       state.notes = action.payload;
     },
+    //   pushToArr: (state, action: PayloadAction<GetAllNotesInterface>) => {},
   },
 });
 

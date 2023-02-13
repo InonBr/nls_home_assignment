@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FieldValues, useForm } from "react-hook-form";
 import "../styles/form.css";
+import { createNewNote } from "../../lib/api";
 
 const NewNoteForm = () => {
   const [noteLength, setNoteLength] = useState(0);
@@ -14,6 +15,10 @@ const NewNoteForm = () => {
 
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
+    const { newNote } = data;
+    const newNoteData = await createNewNote(newNote);
+
+    console.log(newNoteData);
   };
 
   return (
