@@ -29,12 +29,17 @@ export const notesObjSlice = createSlice({
       state.value[key] = state.value[key].filter((item) => item.id !== taskId);
     },
     changeDoneStatus: (state, action: PayloadAction<TaskUpdateInterface>) => {
-      const { updateFrom, updateTo } = action.payload;
+      const { updateFrom, updateTo, id, date, note } = action.payload;
       const keyToAddTo = updateTo ? "doneTasks" : "tasksToComplete";
       const keyToRemoveFrom = updateFrom ? "doneTasks" : "tasksToComplete";
 
-      console.log("keyToAddTo", keyToAddTo);
-      console.log("keyToRemoveFrom", keyToRemoveFrom);
+      state.value[keyToRemoveFrom] = state.value[keyToRemoveFrom].filter(
+        (item) => item.id !== id
+      );
+
+      state.value[keyToAddTo] = [
+        ...[...state.value[keyToAddTo], { id, note, date, doneTask: updateTo }],
+      ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     },
   },
 });
