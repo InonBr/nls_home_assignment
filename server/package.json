@@ -5,7 +5,7 @@
   "author": "Inon Bercu",
   "license": "MIT",
   "scripts": {
-    "start": "node --loader ts-node/esm ./src/app.ts",
+    "start": "ts-node ./src/app.ts",
     "start:nodemon": "nodemon ./src/app.ts",
     "tsc": "tsc --init"
   },
@@ -14,7 +14,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.9.1",
-    "yup": "^1.0.0"
+    "yup": "^1.0.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
@@ -22,7 +23,6 @@
     "@types/node": "^18.13.0",
     "@types/yup": "^0.32.0",
     "nodemon": "^2.0.20",
-    "ts-node": "^10.9.1",
     "tsc": "^2.0.4",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.5"
