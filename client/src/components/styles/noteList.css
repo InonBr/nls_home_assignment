@@ -1,3 +1,11 @@
 .margin-left {
   margin-right: 16px;
 }
+
+.task-to-complete-bg {
+  background-color: rgba(239, 239, 240, 0.3);
+}
+
+.completed-task-bg {
+  background-color: rgba(3, 201, 169, 0.2);
+}

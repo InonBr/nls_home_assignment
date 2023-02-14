@@ -51,7 +51,12 @@ const NotesList = ({ taskList, done }: Props) => {
         {done ? "Completed Tasks" : "Tasks To Complete"}
       </ListGroup.Item>
       {taskList.map((task) => (
-        <ListGroup.Item variant={done ? "success" : "warning"} key={task.id}>
+        <ListGroup.Item
+          key={task.id}
+          className={`${
+            task.doneTask ? "completed-task-bg" : "task-to-complete-bg"
+          }`}
+        >
           <p>{task.note}</p>
           {new Date(task.date).toLocaleString("en-GB", { hour12: false })}
           <div className="mt-2">
@@ -83,7 +88,7 @@ const NotesList = ({ taskList, done }: Props) => {
                     })
                   }
                 >
-                  <MdDoneOutline color="#023020" size={20} />
+                  <MdDoneOutline color="#3C783C" size={20} />
                 </Button>
               </span>
             )}
